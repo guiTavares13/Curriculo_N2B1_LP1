@@ -1,0 +1,49 @@
+﻿@model List<EnderecoViewModel>
+
+<h2>Relação de endereços cadastrados</h2>
+
+<br />
+<a href="/Endereco/NovoEndereco">Novo Registro</a>
+<br />
+
+
+<table class="table table-responsive table-striped">
+    <tr>
+        <th>Ações</th>
+        <th>Código do Endereco</th>
+        <th>CEP</th>
+        <th>Rua</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+    </tr>
+
+    @if (Model != null)
+    {
+        @foreach (EnderecoViewModel e in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Endereco/Edit?id=@e.codEndereco" class="btn-info">Editar</a>
+                    <a href="javascript:apagarEndereco(@e.codEndereco)" class="btn-danger">Apagar</a>
+                </td>
+                <td>@e.codEndereco</td>
+                <td>@e.cep</td>
+                <td>@e.rua</td>
+                <td>@e.bairro</td>
+                <td>@e.cidade</td>
+                <td>@e.estado</td>
+            </tr>
+        }
+    }
+
+
+
+</table>
+
+<script>
+    function apagarEndereco(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = '/Endereco/Delete?id=' + id;
+    }
+</script>
