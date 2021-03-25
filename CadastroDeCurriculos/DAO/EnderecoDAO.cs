@@ -43,6 +43,7 @@ namespace CadastroDeCurriculos.DAO
         {
             string sql = "delete Endereco where cod_endereco =" + codEndereco;
             HelperDAO.ExecutaSQL(sql, null);
+            //comentario
         }
         private EnderecoViewModel MontaEndereco(DataRow registro)
         {
