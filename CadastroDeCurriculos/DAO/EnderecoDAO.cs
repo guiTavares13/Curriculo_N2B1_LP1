@@ -28,7 +28,7 @@ namespace CadastroDeCurriculos.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(endereco));
         }
 
-        private SqlParameter[] CriaParametros(EnderecoViewModel endereco)
+        private SqlParameter[] CriaParametros(EnderecoViewModel endeereco)
         {
             SqlParameter[] parametros = new SqlParameter[6];
             parametros[0] = new SqlParameter("cod_endereco", endereco.codEndereco);
