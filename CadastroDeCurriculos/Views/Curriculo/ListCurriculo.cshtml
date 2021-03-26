@@ -1,0 +1,45 @@
+﻿@model List<ListCurriculosViewModel>
+
+<h2>Curriculos cadastrados</h2>
+
+<br />
+<a href="/Endereco/NovoEndereco">Novo Registro</a>
+<br />
+
+
+<table class="table table-responsive table-striped">
+    <tr>
+        <th>Ações</th>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>CEP</th>
+        <th>Rua</th>
+    </tr>
+
+    @if (Model != null)
+    {
+        @foreach (ListCurriculosViewModel e in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Endereco/Edit?id=@e.CPF" class="btn-info">Editar</a>
+                    <a href="javascript:apagarEndereco(@e.CPF)" class="btn-danger">Apagar</a>
+                </td>
+                <td>@e.CPF</td>
+                <td>@e.Nome</td>
+                <td>@e.CEP</td>
+                <td>@e.Rua</td>
+            </tr>
+        }
+    }
+
+
+
+</table>
+
+<script>
+    function apagarEndereco(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = '/Endereco/Delete?id=' + id;
+    }
+</script>

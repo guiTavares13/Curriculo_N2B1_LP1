@@ -14,19 +14,19 @@ namespace CadastroDeCurriculos.Controllers
         {
             return View();
         }
-
+     
         public IActionResult Menu(string id)
         {
             return View(id);
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult ListarCurriculos()
         {
             try
             {
-                DadosPessoaisDAO dao = new DadosPessoaisDAO();
-                dao.Excluir(id);
-                return RedirectToAction("index");
+                CurriculoDAO dao = new CurriculoDAO();
+                List<ListCurriculosViewModel> lista = dao.ListarCurriculos();
+                return View("ListCurriculo", lista);
             }
             catch (Exception erro)
             {

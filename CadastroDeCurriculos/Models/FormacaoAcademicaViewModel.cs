@@ -8,7 +8,7 @@ namespace CadastroDeCurriculos.Models
     public class FormacaoAcademicaViewModel
     {
         public int Id { get; set; }
-        public int Cod_DadosPessoais { get; set }
+        public int Cod_DadosPessoais { get; set; }
         public string NomeInstituicao { get; set; }
         public string Tipo { get; set; }
         public string Curso { get; set; }

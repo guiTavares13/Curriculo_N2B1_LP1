@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CadastroDeCurriculos.DAO
 {
-    public class CurriculoDAO
+    public class DadosPessoaisDAO
     {
 
         public void Inserir(DadosPessoaisViewModel dados)
