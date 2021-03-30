@@ -1,18 +1,38 @@
-﻿
-<header class="container">
-
-    <h1 class="logotipo"><img src="/imagem/logoFTT.png" alt="Mirror Fashion"></h1>
+﻿<link rel="stylesheet" href="/css/estilo.css">
 
 
-    <nav class="menu-opcoes">
-        <ul>
-            <li><a href="Curriculo/Menu?id=sobre">Sobre</a></li>
-            <li><a href="Endereco/Index?id=ListEndereco">Listar Enderecos</a></li>
-            <li><a href="Curriculo/ListarCurriculos">Listar Curriculos</a></li>
-        </ul>
-    </nav>
+@model List<DadosPessoaisViewModel>
 
 
-</header>
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<link rel="stylesheet" href="/css/estilo.css">
+    <h2>Lista de Currículos Cadastrados</h2>
+
+
+    <a href="/jogo/novoJogo">Cadastrar novo jogo</a>
+    <br />
+
+    <table class="table table-responsive">
+        <tr>
+            <th>Ações</th>
+            <th>Código</th>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>CEP</th>
+            <th>Rua</th>
+        </tr>
+        @foreach (var dados in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/jogo/editar?id=@dados.Id" class="btn btn-info">Alterar</a>
+                    <a href="javascript:excluirJogo(@dados.Id)" class="btn btn-danger">Excluir</a>
+                </td>
+                <td>@dados.Id</td>
+                <td>@dados.Cpf</td>
+                <td>@dados.Nome</td>
+            </tr>
+        }
+    </table>

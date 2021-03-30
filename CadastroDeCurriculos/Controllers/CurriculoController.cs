@@ -12,9 +12,19 @@ namespace CadastroDeCurriculos.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+
+            try
+            {
+                DadosPessoaisDAO dao = new DadosPessoaisDAO();
+                return View("Index", dao.Lista());
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.Message));
+            }
+
         }
-     
+
         public IActionResult Menu(string id)
         {
             return View(id);

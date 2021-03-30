@@ -68,5 +68,19 @@ namespace CadastroDeCurriculos.DAO
             c.CargoPretendido = registro["cargo_pretendido"].ToString();
             return c;
         }
+
+        public List<DadosPessoaisViewModel> Lista()
+        {
+            string sql = "select * from DadosPessoais";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            List<DadosPessoaisViewModel> retorno = new List<DadosPessoaisViewModel>();
+
+            foreach (DataRow registro in tabela.Rows)
+            {
+                retorno.Add(MontaCurriculo(registro));
+            }
+
+            return retorno;
+        }
     }
 }
