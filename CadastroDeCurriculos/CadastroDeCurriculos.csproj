@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Curriculo\NovoCurriculo.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Curriculo\NovoCurriculo.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\imagem\logoFTT.png" />
   </ItemGroup>
 

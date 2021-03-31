@@ -1,0 +1,43 @@
+﻿
+@model FormacaoAcademicaViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Formação Acadêmica</h2>
+<form action="Salvar" method="post">
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+
+
+    <label for="Id" class="control-label">Id</label>
+
+    @if (ViewBag.Operacao == "I")
+    {
+        <input type="number" Name="Id" value="@Model.Id" class="form-control" />
+    }
+    else
+    {
+        <input type="number" Name="Id" value="@Model.Id" class="form-control" readonly />
+    }
+
+    <br />
+    <label for="NomeInstituicao" class="control-label">Nome da Instituíção</label>
+    <input type="text" Name="NomeInstituicao" value="@Model.NomeInstituicao" class="form-control" />
+    <br />
+
+    <label for="Tipo" class="control-label">Tipo</label>
+    <input type="text" Name="Tipo" value="@Model.Tipo" class="form-control" />
+    <br />
+    <label for="Curso" class="control-label">Curso</label>
+    <input type="text" Name="Curso" value="@Model.Curso" class="form-control" />
+    <br />
+    <label for="DataInicio" class="control-label">Data de Término</label>
+    <input type="text" Name="DataInicio" value="@Model.DataInicio" class="form-control" />
+    <br />
+    <label for="DataTermino" class="control-label">Data de Término</label>
+    <input type="text" Name="DataTermino" value="@Model.DataTermino" class="form-control" />
+    <br />
+    <input type="submit" value="Proximo" class="btn btn-info" href="/Endereco/FormEndereco" />
+    &nbsp;&nbsp;&nbsp;
+    <a href="/Curriculo/CadExperienciaProfissional">Proximo</a>
+    <a href="/Endereco/NovoEndereco" class="btn btn-light">Voltar</a>
+</form>

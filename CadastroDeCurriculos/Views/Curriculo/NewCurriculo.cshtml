@@ -1,0 +1,43 @@
+﻿
+@model DadosPessoaisViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Dados Pessoais</h2>
+<form action="Salvar" method="post">
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+
+
+    <label for="Id" class="control-label">Id</label>
+
+    @if (ViewBag.Operacao == "I")
+    {
+        <input type="number" Name="Id" value="@Model.Id" class="form-control" />
+    }
+    else
+    {
+        <input type="number" Name="Id" value="@Model.Id" class="form-control" readonly />
+    }
+
+    <br />
+    <label for="CPF" class="control-label">CPF</label>
+    <input type="text" Name="CPF" value="@Model.Cpf" class="form-control" />
+    <br />
+
+    <label for="Nome" class="control-label">Nome</label>
+    <input type="text" Name="Nome" value="@Model.Nome" class="form-control" />
+    <br />
+    <label for="Telefone" class="control-label">Telefone</label>
+    <input type="text" Name="Telefone" value="@Model.Telefone" class="form-control" />
+    <br />
+    <label for="Email" class="control-label">E-mail</label>
+    <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+    <br />
+    <label for="CargoPretendido" class="control-label">Cargo Pretendido</label>
+    <input type="number" Name="CargoPretendido" value="@Model.CargoPretendido" class="form-control" />
+    <br />
+    <input type="submit" value="Proximo" class="btn btn-info" href="/Endereco/FormEndereco" />
+    &nbsp;&nbsp;&nbsp;
+    <a href="/Endereco/NovoEndereco">Proximo</a>
+    <a href="/Endereco/index" class="btn btn-light">Voltar</a>
+</form>

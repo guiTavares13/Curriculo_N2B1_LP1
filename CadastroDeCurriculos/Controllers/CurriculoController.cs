@@ -25,6 +25,70 @@ namespace CadastroDeCurriculos.Controllers
 
         }
 
+        public IActionResult NewCurriculo()
+        {
+            try
+            {
+                ViewBag.Operacao = "I";
+
+                DadosPessoaisDAO dao = new DadosPessoaisDAO();
+                DadosPessoaisViewModel dados = new DadosPessoaisViewModel();
+                return View("NewCurriculo", dados);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
+        public IActionResult CadFormacaoAcademica()
+        {
+            try
+            {
+                ViewBag.Operacao = "I";
+
+                FormacaoAcademicaDAO dao = new FormacaoAcademicaDAO();
+                FormacaoAcademicaViewModel dados = new FormacaoAcademicaViewModel();
+                return View("CadFormacaoAcademica", dados);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
+        public IActionResult CadExperienciaProfissional()
+        {
+            try
+            {
+                ViewBag.Operacao = "I";
+
+                ExperienciasProfissionaisDAO dao = new ExperienciasProfissionaisDAO();
+                ExperienciasProfissionaisViewModel dados = new ExperienciasProfissionaisViewModel();
+                return View("CadExperienciaProfissional", dados);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
+        public IActionResult CadCursos()
+        {
+            try
+            {
+                ViewBag.Operacao = "I";
+
+                CursosDAO dao = new CursosDAO();
+                CursosViewModel dados = new CursosViewModel();
+                return View("CadCurso", dados);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
         public IActionResult Menu(string id)
         {
             return View(id);
