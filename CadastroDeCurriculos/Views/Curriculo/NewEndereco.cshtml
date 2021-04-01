@@ -46,18 +46,18 @@
 </script>
 
 
-<form asp-action="Salvar" method="post">
+<form asp-action="SalvarEndereco" method="post">
 
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
     <label for="Id" class="control-label">Código do Endereço</label>
 
     @if (ViewBag.Operacao == "I")
     {
-        <input type="number" Name="codEndereco" value="@Model.codEndereco" class="form-control" />
+        <input type="number" Name="idEndereco" value="@Model.idEndereco" class="form-control" />
     }
     else
     {
-        <input type="number" Name="codEndereco" value="@Model.codEndereco" class="form-control" readonly />
+        <input type="number" Name="idEndereco" value="@Model.idEndereco" class="form-control" />
     }
 
     <label for="cep" class="control-label">CEP</label> <br>
@@ -66,7 +66,7 @@
     <br>
 
     <label for="rua" class="control-label">Logradouro</label><br />
-    <input type="text" name="logradouro" id="logradouro" value="@Model.rua" class="form-control" />
+    <input type="text" name="rua" id="logradouro" value="@Model.rua" class="form-control" />
     <br>
 
 
@@ -75,11 +75,11 @@
     <br>
 
     <label for="cidade" class="control-label">Cidade</label><br>
-    <input type="text" name="localidade" id="localidade" value="@Model.cidade" class="form-control" />
+    <input type="text" name="cidade" id="localidade" value="@Model.cidade" class="form-control" />
     <br>
 
     <label for="estado" class="control-label">Estado</label> <br>
-    <input type="text" name="uf" id="uf" value="@Model.estado" class="form-control" />
+    <input type="text" name="estado" id="uf" value="@Model.estado" class="form-control" />
     <br>
 
     <input type="submit" value="Salvar dados" class="btn btn-info" />

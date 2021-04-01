@@ -7,7 +7,7 @@ namespace CadastroDeCurriculos.Models
 {
     public class EnderecoViewModel
     {
-        public int codEndereco { get; set; }
+        public int idEndereco { get; set; }
         public string cep { get; set; }
         public string rua { get; set; }
         public string bairro { get; set; }

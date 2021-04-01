@@ -14,8 +14,8 @@ namespace CadastroDeCurriculos.DAO
         public void Inserir(DadosPessoaisViewModel dados)
         {
             string sql =
-            "insert into DadosPessoais(Id, CPF,nome,telefone,email,cargo_pretendido)" +
-            "values(@Id, @CPF, @nome, @telefone, @email, @cargo_pretendido)";
+            "insert into DadosPessoais(id_dadosPessoais, CPF,nome,telefone,email,cargo_pretendido)" +
+            "values(@id_dadosPessoais, @CPF, @nome, @telefone, @email, @cargo_pretendido)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(dados));
         }
         public void Alterar(DadosPessoaisViewModel dados)
@@ -48,7 +48,7 @@ namespace CadastroDeCurriculos.DAO
         private SqlParameter[] CriaParametros(DadosPessoaisViewModel dados)
         {
             SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("Id", dados.Id);
+            parametros[0] = new SqlParameter("id_dadosPessoais", dados.Id);
             parametros[1] = new SqlParameter("CPF", dados.Cpf);
             parametros[2] = new SqlParameter("nome", dados.Nome);
             parametros[3] = new SqlParameter("telefone", dados.Telefone);
@@ -60,7 +60,7 @@ namespace CadastroDeCurriculos.DAO
         private DadosPessoaisViewModel MontaCurriculo(DataRow registro)
         {
             DadosPessoaisViewModel c = new DadosPessoaisViewModel();
-            c.Id = Convert.ToInt32(registro["Id"]);
+            c.Id = Convert.ToInt32(registro["id_dadosPessoais"].ToString());
             c.Cpf = registro["CPF"].ToString();
             c.Nome = registro["nome"].ToString();
             c.Telefone = registro["telefone"].ToString();

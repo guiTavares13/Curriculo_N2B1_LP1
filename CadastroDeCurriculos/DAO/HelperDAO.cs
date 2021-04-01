@@ -28,9 +28,12 @@ namespace CadastroDeCurriculos.DAO
             {
                 using (SqlDataAdapter adapter = new SqlDataAdapter(sql, cx))
                 {
-                    DataTable tabela = new DataTable();
-                    adapter.Fill(tabela);
-                    return tabela;
+                    if (parametros != null)
+                        adapter.SelectCommand.Parameters.AddRange(parametros);
+                    DataTable tabelaTemp = new DataTable();
+                    adapter.Fill(tabelaTemp);
+                    cx.Close();
+                    return tabelaTemp;
                 }
             }
         }

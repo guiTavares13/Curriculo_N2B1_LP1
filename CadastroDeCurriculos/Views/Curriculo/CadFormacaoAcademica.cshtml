@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Formação Acadêmica</h2>
-<form action="Salvar" method="post">
+<form asp-action="SalvarFormacaoAcademica" method="post">
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
 
@@ -18,6 +18,9 @@
     {
         <input type="number" Name="Id" value="@Model.Id" class="form-control" readonly />
     }
+    </br>
+    <label for="Cod_DadosPessoais" class="control-label">Cod Dados Pessoais</label>
+    <input type="number" Name="Cod_DadosPessoais" value="@Model.Cod_DadosPessoais" class="form-control" />
 
     <br />
     <label for="NomeInstituicao" class="control-label">Nome da Instituíção</label>
@@ -31,13 +34,12 @@
     <input type="text" Name="Curso" value="@Model.Curso" class="form-control" />
     <br />
     <label for="DataInicio" class="control-label">Data de Término</label>
-    <input type="text" Name="DataInicio" value="@Model.DataInicio" class="form-control" />
+    <input type="date" Name="DataInicio" value="@Model.DataInicio" class="form-control" />
     <br />
     <label for="DataTermino" class="control-label">Data de Término</label>
-    <input type="text" Name="DataTermino" value="@Model.DataTermino" class="form-control" />
+    <input type="date" Name="DataTermino" value="@Model.DataTermino" class="form-control" />
     <br />
     <input type="submit" value="Proximo" class="btn btn-info" href="/Endereco/FormEndereco" />
-    &nbsp;&nbsp;&nbsp;
-    <a href="/Curriculo/CadExperienciaProfissional">Proximo</a>
+    &nbsp;&nbsp;&nbsp
     <a href="/Endereco/NovoEndereco" class="btn btn-light">Voltar</a>
 </form>

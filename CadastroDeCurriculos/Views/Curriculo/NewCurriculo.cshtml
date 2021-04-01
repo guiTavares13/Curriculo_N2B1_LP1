@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Dados Pessoais</h2>
-<form action="Salvar" method="post">
+<form asp-action="SalvarDadosPessoais" method="post">
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
 
@@ -34,9 +34,9 @@
     <input type="text" Name="Email" value="@Model.Email" class="form-control" />
     <br />
     <label for="CargoPretendido" class="control-label">Cargo Pretendido</label>
-    <input type="number" Name="CargoPretendido" value="@Model.CargoPretendido" class="form-control" />
+    <input type="text" Name="CargoPretendido" value="@Model.CargoPretendido" class="form-control" />
     <br />
-    <input type="submit" value="Proximo" class="btn btn-info" href="/Endereco/FormEndereco" />
+    <input type="submit" value="Proximo" class="btn btn-info" href="/FormEndereco" />
     &nbsp;&nbsp;&nbsp;
     <a href="/Endereco/NovoEndereco">Proximo</a>
     <a href="/Endereco/index" class="btn btn-light">Voltar</a>

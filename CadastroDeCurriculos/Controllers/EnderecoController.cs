@@ -44,7 +44,7 @@ namespace CadastroDeCurriculos.Controllers
             }
         }
 
-        public IActionResult Salvar(EnderecoViewModel endereco, string Operacao)
+        public IActionResult SalvarEndereco(EnderecoViewModel endereco, string Operacao)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace CadastroDeCurriculos.Controllers
                 else
                     dao.Alterar(endereco);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("CadFormacaoAcademica");
             }
             catch (Exception erro)
             {

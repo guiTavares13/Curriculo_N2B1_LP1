@@ -37,5 +37,19 @@ namespace CadastroDeCurriculos.DAO
             l.Rua = registro["Rua"].ToString();
             return l;
         }
+
+        public int ProximoId()
+        {
+            string sql = "select isnull(max(id) +1, 1) as 'MAIOR' from DadosPessoais";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
+
+        public int MesmoId()
+        {
+            string sql = "select max(id) from DadosPessoais";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
     }
 }

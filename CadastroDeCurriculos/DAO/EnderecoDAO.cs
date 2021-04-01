@@ -13,8 +13,8 @@ namespace CadastroDeCurriculos.DAO
         public void Inserir(EnderecoViewModel endereco)
         {
             string sql =
-            "insert into Endereco(cod_endereco,CEP,rua,bairro,cidade,Estado)" +
-            "values(@cod_endereco, @cep, @rua, @bairro, @cidade, @estado)";
+            "insert into Endereco(id_endereco,CEP,rua,bairro,cidade,Estado)" +
+            "values(@id_endereco, @cep, @rua, @bairro, @cidade, @estado)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(endereco));
         }
         public void Alterar(EnderecoViewModel endereco)
@@ -24,14 +24,14 @@ namespace CadastroDeCurriculos.DAO
             "rua = @rua, " +
             "bairro = @bairro," +
             "cidade = @cidade," +
-            "estado = @estado where cod_endereco = @cod_endereco";
+            "estado = @estado where id_endereco = @id_endereco";
             HelperDAO.ExecutaSQL(sql, CriaParametros(endereco));
         }
 
         private SqlParameter[] CriaParametros(EnderecoViewModel endereco)
         {
             SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("cod_endereco", endereco.codEndereco);
+            parametros[0] = new SqlParameter("id_endereco", endereco.idEndereco);
             parametros[1] = new SqlParameter("CEP", endereco.cep);
             parametros[2] = new SqlParameter("rua", endereco.rua);
             parametros[3] = new SqlParameter("bairro", endereco.bairro);
@@ -47,7 +47,7 @@ namespace CadastroDeCurriculos.DAO
         private EnderecoViewModel MontaEndereco(DataRow registro)
         {
             EnderecoViewModel e = new EnderecoViewModel();
-            e.codEndereco = Convert.ToInt32(registro["cod_Endereco"]);
+            e.idEndereco = Convert.ToInt32(registro["id_endereco"]);
             e.cep = registro["cep"].ToString();
             e.rua = registro["rua"].ToString();
             e.bairro = registro["bairro"].ToString();
@@ -89,6 +89,13 @@ namespace CadastroDeCurriculos.DAO
             string sql = "select isnull(max(cod_endereco) +1, 1) as 'MAIOR' from Endereco";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
+
+        public int MesmoId()
+        {
+            string sql = "select max(id_dadosPessoais) from DadosPessoais";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["id_endereco"]);
         }
     }
 }
