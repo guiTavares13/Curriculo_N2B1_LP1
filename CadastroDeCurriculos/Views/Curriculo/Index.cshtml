@@ -9,123 +9,48 @@
 }
 
 <h2>Lista de Currículos Cadastrados</h2>
-
-<section>
-    <div className="container">
-        <div className="row conteudo">
-
-            <div className="col-md-4">
-
-                <div className="row card-lote">
-                    <div className="conteudo-lote">
-
-                        <div className="img-lote">
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-            </div>
-
-
-            <div className="row card-lote">
-                <div className="conteudo-lote">
-
-                    <div className="img-lote">
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div className="row card-lote">
-                <div className="conteudo-lote">
-
-                    <div className="img-lote">
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div className="row card-lote">
-                <div className="conteudo-lote">
-
-                    <div className="img-lote">
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div className="col-md-4">
-
-                <div className="row card-lote">
-                    <div className="conteudo-lote">
-
-                        <div className="img-lote">
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div className="row card-lote">
-                    <div className="conteudo-lote">
-
-                        <div className="img-lote">
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div className="row card-lote">
-                    <div className="conteudo-lote">
-
-                        <div className="img-lote">
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
+<br />
 <a href="/Curriculo/NewCurriculo">Novo currículo</a>
 <br />
+<br />
 
-<table class="table table-responsive">
-    <tr>
-        <th>Ações</th>
-        <th>Código</th>
-        <th>CPF</th>
-        <th>Nome</th>
-        <th>CEP</th>
-        <th>Rua</th>
-    </tr>
-    @foreach (var dados in Model)
-    {
-        <tr>
-            <td>
-                <a href="/jogo/editar?id=@dados.ID" class="btn btn-info">Alterar</a>
-                <a href="javascript:excluirJogo(@dados.ID)" class="btn btn-danger">Excluir</a>
-            </td>
-            <td>@dados.ID</td>
-            <td>@dados.CPF</td>
-            <td>@dados.Nome</td>
-            <td>@dados.CEP</td>
-            <td>@dados.Rua</td>
+<div class="container">
+    <div class="row">
+        @foreach (var dados in Model)
+        {
+            {
+                <button class="col-sm card-lote btn btn-light" style="margin: 5px; background-color:#66E3EB;">
+                    <div class="col-sm">
+                        <div class="container">
 
-        </tr>
-    }
-</table>
+                            <table class="table table-responsive" style="justify-items:flex-start">
+
+                                <tr><b>Código</b> - @dados.ID</tr>
+                                <br />
+                                <tr><b> CPF </b>- @dados.CPF</tr>
+                                <br />
+                                <tr><b>Nome</b> - @dados.Nome</tr>
+                                <br />
+                                <tr><b>CEP</b> - @dados.CEP</tr>
+                                <br />
+                                <tr><b>Rua</b> - @dados.Rua</tr>
+                                <br />
+                                <br />
+                                <tr>
+                                    <a href="/jogo/editar?id=@dados.ID" class="btn btn-info">Alterar</a>
+                                    <a href="javascript:excluirJogo(@dados.ID)" class="btn btn-danger">Excluir</a>
+                                </tr>
+
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                </button>
+            }
+        }
+    </div>
+</div>
+
+
