@@ -3,36 +3,19 @@
     margin-left: auto;
 }
 
-.menu-opcoes ul {
-    font-size: 15px;
-}
-
-.menu-opcoes a {
-    color: #0251a0;
-}
-
-.menu-opcoes ul li {
-    display: inline;
-    margin-left: 20px;
-}
-
 .container {
-    
+    margin: 0 auto;
     width: 940px;
 }
 
-.logotipo {
-    position: relative;
-    top: 20px;
-    left: 50px;
+.painel dd {
+    display: inline-block;
+    vertical-align: top;
+    width: 225px;
+    padding-bottom: 10px;
 }
 
-header {
-    position: relative;
-}
 
-.menu-opcoes {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.painel figcaption{
+    text-align:center
 }
