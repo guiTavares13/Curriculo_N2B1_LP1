@@ -10,7 +10,12 @@ namespace CadastroDeCurriculos.DAO
 {
     public class DadosPessoaisDAO
     {
-
+        public int ProximoId()
+        {
+            string sql = "select isnull(max(id_dadosPessoais) +1, 1) as 'MAIOR' from DadosPessoais";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
         public void Inserir(DadosPessoaisViewModel dados)
         {
             string sql =

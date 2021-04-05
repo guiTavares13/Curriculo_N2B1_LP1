@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Experiência Profissional</h2>
-<form action="Salvar" method="post">
+<form action="SalvarExperienciaProfissional" method="post">
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
 
@@ -28,16 +28,15 @@
     <input type="text" Name="NomeCargo" value="@Model.NomeCargo" class="form-control" />
     <br />
     <label for="DataInicio" class="control-label">Data de início</label>
-    <input type="text" Name="DataInicio" value="@Model.DataInicio" class="form-control" />
+    <input type="date" Name="DataInicio" value="@Model.DataInicio" class="form-control" />
     <br />
     <label for="DataTermino" class="control-label">Data de Término</label>
-    <input type="text" Name="DataTermino" value="@Model.DataTermino" class="form-control" />
+    <input type="date" Name="DataTermino" value="@Model.DataTermino" class="form-control" />
     <br />
     <label for="Descricao" class="control-label">Descrição</label>
-    <input type="number" Name="Descricao" value="@Model.Descricao" class="form-control" />
+    <input type="text" Name="Descricao" value="@Model.Descricao" class="form-control" />
     <br />
-    <input type="submit" value="Proximo" class="btn btn-info" href="/Endereco/FormEndereco" />
+    <input type="submit" value="Salvar" class="btn btn-info" />
     &nbsp;&nbsp;&nbsp;
-    <a href="/Curriculo/CadCursos">Proximo</a>
-    <a href="/Endereco/NovoEndereco" class="btn btn-light">Voltar</a>
+    <a href="/Curriculos/CadCursos" class="btn btn-light">Voltar</a>
 </form>

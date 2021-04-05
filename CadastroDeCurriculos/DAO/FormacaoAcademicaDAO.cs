@@ -10,11 +10,18 @@ namespace CadastroDeCurriculos.DAO
 {
     public class FormacaoAcademicaDAO
     {
+
+        public int ProximoId()
+        {
+            string sql = "select isnull(max(id_formacaoAcademica) +1, 1) as 'MAIOR' from FormacaoAcademicas";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
         public void Inserir(FormacaoAcademicaViewModel formacao)
         {
             string sql =
             "insert into FormacaoAcademicas(id_formacaoAcademica,cod_DadosPessoais,nome_instituicao,tipo,curso,data_inicio, data_termino)" +
-            "values(@id_formacaoAcademica, @nome_instituicao, @cod_DadosPessoais, @tipo, @curso, @data_inicio, @data_termino)";
+            "values(@id_formacaoAcademica, @cod_DadosPessoais,@nome_instituicao, @tipo, @curso, @data_inicio, @data_termino)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(formacao));
         }
         public void Alterar(FormacaoAcademicaViewModel formacao)
@@ -30,7 +37,7 @@ namespace CadastroDeCurriculos.DAO
 
         public void Excluir(int idformacao)
         {
-            string sql = "delete FormacaoAcademicas where id_formacaoAcademica =" + idformacao;
+            string sql = "delete FormacaoAcademicas where cod_DadosPessoais =" + idformacao;
             HelperDAO.ExecutaSQL(sql, null);
         }
 

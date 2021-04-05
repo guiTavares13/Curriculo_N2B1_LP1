@@ -10,7 +10,12 @@ namespace CadastroDeCurriculos.DAO
 {
     public class CursosDAO
     {
-
+        public int ProximoId()
+        {
+            string sql = "select isnull(max(id_curso) +1, 1) as 'MAIOR' from Cursos";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
         public void Inserir(CursosViewModel curso)
         {
             string sql =
@@ -27,9 +32,9 @@ namespace CadastroDeCurriculos.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(curso));
         }
 
-        public void Excluir(int idcurso)
+        public void Excluir(int idDadosPessoais)
         {
-            string sql = "delete Cursos where id_curso =" + idcurso;
+            string sql = "delete Cursos where cod_DadosPessoais =" + idDadosPessoais;
             HelperDAO.ExecutaSQL(sql, null);
         }
 

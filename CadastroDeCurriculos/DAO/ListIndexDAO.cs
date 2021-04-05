@@ -22,7 +22,7 @@ namespace CadastroDeCurriculos.DAO
         }
         public List<ListCurriculosViewModel> ListagemIndex()
         {
-            string sql = "select  dp.id_dadosPessoais, dp.CPF, dp.nome, en.CEP, en.rua  from DadosPessoais as dp  JOIN Endereco as en on  dp.id_dadosPessoais = en.id_endereco";
+            string sql = "select  dp.id_dadosPessoais, dp.CPF, dp.nome, en.CEP, en.rua  from DadosPessoais as dp  JOIN Endereco as en on  dp.id_endereco = en.id_endereco";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             List<ListCurriculosViewModel> retorno = new List<ListCurriculosViewModel>();
 

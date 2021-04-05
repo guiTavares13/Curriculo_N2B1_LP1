@@ -1,5 +1,6 @@
 ﻿
 <link rel="stylesheet" href="css/listagem.css" />
+<script src="~/js/site.js"></script>
 
 @model List<ListCurriculosViewModel>
 
@@ -38,11 +39,17 @@
                                 <br />
                                 <tr>
                                     <a href="/Curriculo/edit?id=@dados.ID" class="btn btn-info">Alterar</a>
-                                    <a href="javascript:excluirCurriculo(@dados.ID)" class="btn btn-danger">Excluir</a>
+                                    <a href="javascript:apagarCurriculo(@dados.ID)" class="btn btn-danger">Excluir</a>
                                 </tr>
 
-
                             </table>
+
+                            <script>
+                                function apagarCurriculo(id) {
+                                    if (confirm('Confirma a exclusão do registro?'))
+                                        location.href = 'Curriculo/Delete?id=' + id;
+                                }
+                            </script>
 
                         </div>
                     </div>
@@ -52,5 +59,7 @@
         }
     </div>
 </div>
+
+
 
 

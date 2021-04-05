@@ -9,13 +9,14 @@
     <input type="hidden" name="IdDadosPessoais" value="@ViewBag.IdDadosPessoais" />
 
 
-    <label for="Id" class="control-label">Id</label>
+    <label for="Id" class="control-label">Id Formação Academica</label>
 
     @if (ViewBag.Operacao == "I")
     {
         <input type="number" Name="Id" value="@Model.Id" class="form-control" />
         <br />
-        <input type="number" Name="Cod_DadosPessoais" value="@Model.Cod_DadosPessoais" class="form-control" />
+        <label for="Cod_DadosPessoais" class="control-label">Id Dados Pessoais</label>
+        <input type="number" Name="Cod_DadosPessoais" value="@ViewBag.IdDadosPessoais" class="form-control" readonly />
     }
     else
     {
@@ -34,7 +35,7 @@
     <label for="Curso" class="control-label">Curso</label>
     <input type="text" Name="Curso" value="@Model.Curso" class="form-control" />
     <br />
-    <label for="DataInicio" class="control-label">Data de Término</label>
+    <label for="DataInicio" class="control-label">Data Início</label>
     <input type="date" Name="DataInicio" value="@Model.DataInicio" class="form-control" />
     <br />
     <label for="DataTermino" class="control-label">Data de Término</label>

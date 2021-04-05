@@ -10,6 +10,14 @@ namespace CadastroDeCurriculos.DAO
 {
     public class ExperienciasProfissionaisDAO
     {
+
+        public int ProximoId()
+        {
+            string sql = "select isnull(max(id_experienciaProfissional) +1, 1) as 'MAIOR' from ExperienciasProfissionais";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
+
         public void Inserir(ExperienciasProfissionaisViewModel dados)
         {
             string sql =
@@ -30,7 +38,7 @@ namespace CadastroDeCurriculos.DAO
 
         public void Excluir(int IdDados)
         {
-            string sql = "delete ExperienciasProfissionais  where id_experienciaProfissional =" + IdDados;
+            string sql = "delete ExperienciasProfissionais  where cod_DadosPessoais =" + IdDados;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
