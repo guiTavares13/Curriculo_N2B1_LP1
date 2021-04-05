@@ -205,8 +205,12 @@ namespace CadastroDeCurriculos.Controllers
                 FormacaoAcademicaDAO dao = new FormacaoAcademicaDAO();
                 if (Operacao == "I")
                 {
+                    CursosViewModel cursos = new CursosViewModel();
                     ViewBag.Operacao = "I";
+                    ViewBag.IdDadosPessoais = IdDadosPessoais;
                     dao.Inserir(formacao);
+                    cursos.Id = daoCurso.ProximoId();
+                    return View("CadCursos", cursos);
                 }
                 else
                 {
@@ -258,8 +262,11 @@ namespace CadastroDeCurriculos.Controllers
                 CursosDAO dao = new CursosDAO();
                 if (Operacao == "I")
                 {
+                    ExperienciasProfissionaisViewModel experiencias = new ExperienciasProfissionaisViewModel();
                     ViewBag.Operacao = "I";
                     dao.Inserir(curso);
+                    experiencias.Id = daoExperiencia.ProximoId();
+                    return View("CadExperienciaProfissional", experiencias);
                 }
                 else
                 {
@@ -290,7 +297,7 @@ namespace CadastroDeCurriculos.Controllers
                     ViewBag.Operacao = "A";
                     dao.Alterar(experiencia);
                 }
-                return View("Index");
+                return RedirectToAction("Index");
             }
             catch (Exception erro)
             {

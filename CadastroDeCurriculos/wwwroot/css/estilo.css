@@ -19,3 +19,8 @@
 .painel figcaption{
     text-align:center
 }
+
+.painel figure {
+    width: 225px;
+    height: 225px;
+}
