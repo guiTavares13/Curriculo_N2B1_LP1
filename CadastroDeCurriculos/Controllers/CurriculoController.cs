@@ -204,7 +204,25 @@ namespace CadastroDeCurriculos.Controllers
             }
         }
 
+        public IActionResult Edit(int id)
+        {
+            try
+            {
+                ViewBag.Operacao = "A";
+               // PreparaListaCidadesParaCombo();
 
+                DadosPessoaisDAO dao = new DadosPessoaisDAO();
+                DadosPessoaisViewModel dadosPessoais = dao.Consulta(id);
+                if (dadosPessoais == null)
+                    return RedirectToAction("index");
+                else
+                    return View("NewCurriculo", dadosPessoais);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
 
 
 

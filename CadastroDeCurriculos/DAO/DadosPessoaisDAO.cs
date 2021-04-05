@@ -23,21 +23,21 @@ namespace CadastroDeCurriculos.DAO
             string sql =
             "update DadosPessoais set CPF = @CPF, " +
             "nome = @nome, " +
-            "telefone = @telefone," +
-            "email = @email," +
-            "cargo_pretendido = @cargo_pretendido where Id = @Id";
+            "telefone = @telefone, " +
+            "email = @email, " +
+            "cargo_pretendido = @cargo_pretendido where id_dadosPessoais = @id_dadosPessoais";
             HelperDAO.ExecutaSQL(sql, CriaParametros(dados));
         }
 
         public void Excluir(int IdDados)
         {
-            string sql = "delete DadosPessoais where Id =" + IdDados;
+            string sql = "delete DadosPessoais where id_dadosPessoais =" + IdDados;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
         public DadosPessoaisViewModel Consulta(int Id)
         {
-            string sql = "select * from DadosPessoais where Id = " + Id;
+            string sql = "select * from DadosPessoais where id_dadosPessoais = " + Id;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;
