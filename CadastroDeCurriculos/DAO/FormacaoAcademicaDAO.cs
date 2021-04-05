@@ -36,12 +36,12 @@ namespace CadastroDeCurriculos.DAO
 
         public FormacaoAcademicaViewModel Consulta(int idformacao)
         {
-            string sql = "select * from FormacaoAcademicas where id_formacaoAcademica = " + idformacao;
+            string sql = "select * from FormacaoAcademicas where cod_DadosPessoais = " + idformacao;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;
             else
-                return MontaCurriculo(tabela.Rows[0]);
+                return MontaFormacao(tabela.Rows[0]);
         }
         private SqlParameter[] CriaParametros(FormacaoAcademicaViewModel formacao)
         {
@@ -51,17 +51,17 @@ namespace CadastroDeCurriculos.DAO
             parametros[2] = new SqlParameter("nome_instituicao", formacao.NomeInstituicao);
             parametros[3] = new SqlParameter("tipo", formacao.Tipo);
             parametros[4] = new SqlParameter("curso", formacao.Curso);
-            parametros[5] = new SqlParameter("data_inicio", formacao.DataInicio);
-            parametros[6] = new SqlParameter("data_termino", formacao.DataTermino);
+            parametros[5] = new SqlParameter("data_inicio", formacao.DataInicio.ToShortDateString());
+            parametros[6] = new SqlParameter("data_termino", formacao.DataTermino.ToShortDateString());
             return parametros;
         }
 
-        private FormacaoAcademicaViewModel MontaCurriculo(DataRow registro)
+        private FormacaoAcademicaViewModel MontaFormacao(DataRow registro)
         {
             FormacaoAcademicaViewModel formacao = new FormacaoAcademicaViewModel();
             formacao.Id = Convert.ToInt32(registro["id_formacaoAcademica"]);
             formacao.Cod_DadosPessoais = Convert.ToInt32(registro["cod_DadosPessoais"]);
-            formacao.NomeInstituicao = registro["nome_instituicao "].ToString();
+            formacao.NomeInstituicao = registro["nome_instituicao"].ToString();
             formacao.Tipo = registro["tipo"].ToString();
             formacao.Curso = registro["curso"].ToString();
             formacao.DataInicio = Convert.ToDateTime(registro["data_inicio"].ToString());

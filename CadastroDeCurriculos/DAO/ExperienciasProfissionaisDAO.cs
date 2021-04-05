@@ -36,7 +36,7 @@ namespace CadastroDeCurriculos.DAO
 
         public ExperienciasProfissionaisViewModel Consulta(int Id)
         {
-            string sql = "select * from ExperienciasProfissionais  where Id = " + Id;
+            string sql = "select * from ExperienciasProfissionais  where cod_DadosPessoais = " + Id;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;

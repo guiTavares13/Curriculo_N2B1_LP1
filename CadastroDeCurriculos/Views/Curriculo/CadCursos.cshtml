@@ -4,8 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Cursos</h2>
-<form action="Salvar" method="post">
+<form action="SalvarCurso" method="post">
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <input type="hidden" name="IdDadosPessoais" value="@ViewBag.IdDadosPessoais" />
 
 
     <label for="Id" class="control-label">Id</label>
@@ -30,9 +31,8 @@
     <label for="QuantHoras" class="control-label">Curso</label>
     <input type="number" Name="QuantHoras" value="@Model.QuantHoras" class="form-control" />
     <br />
-    
+
     <input type="submit" value="Proximo" class="btn btn-info" href="/Endereco/FormEndereco" />
     &nbsp;&nbsp;&nbsp;
-    <a href="/Endereco/NovoEndereco">Proximo</a>
     <a href="/Endereco/NovoEndereco" class="btn btn-light">Voltar</a>
 </form>

@@ -49,6 +49,7 @@
 <form asp-action="SalvarEndereco" method="post">
 
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <input type="hidden" name="IdDadosPessoais" value="@ViewBag.IdDadosPessoais" />
     <label for="Id" class="control-label">Código do Endereço</label>
 
     @if (ViewBag.Operacao == "I")
@@ -57,7 +58,7 @@
     }
     else
     {
-        <input type="number" Name="idEndereco" value="@Model.idEndereco" class="form-control" readonly/>
+        <input type="number" Name="idEndereco" value="@Model.idEndereco" class="form-control" readonly />
     }
 
     <label for="cep" class="control-label">CEP</label> <br>
@@ -82,9 +83,8 @@
     <input type="text" name="estado" id="uf" value="@Model.estado" class="form-control" />
     <br>
 
-    <input type="submit" value="Salvar dados" class="btn btn-info" />
+    <input type="submit" value="Proximo" class="btn btn-info" />
     &nbsp;&nbsp;&nbsp;
-    <a href="/Curriculo/CadFormacaoAcademica">Proximo</a>
     <a href="/Curriculo/index" class="btn btn-light">Voltar</a>
 
 

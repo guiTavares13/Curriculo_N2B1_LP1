@@ -35,7 +35,7 @@ namespace CadastroDeCurriculos.DAO
 
         public CursosViewModel Consulta(int idcurso)
         {
-            string sql = "select * from Cursos where id_curso = " + idcurso;
+            string sql = "select * from Cursos where cod_DadosPessoais = " + idcurso;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;

@@ -33,7 +33,7 @@ namespace CadastroDeCurriculos.Controllers
                 DadosPessoaisDAO dao = new DadosPessoaisDAO();
                 CurriculoDAO daoCurriculo = new CurriculoDAO();
                 DadosPessoaisViewModel dados = new DadosPessoaisViewModel();
-             // dados.Id = (new CurriculoDAO()).ProximoId();
+                // dados.Id = (new CurriculoDAO()).ProximoId();
                 return View("NewCurriculo", dados);
             }
             catch (Exception erro)
@@ -42,15 +42,17 @@ namespace CadastroDeCurriculos.Controllers
             }
         }
 
-        public IActionResult CadFormacaoAcademica()
+        public IActionResult CadFormacaoAcademica(FormacaoAcademicaViewModel formacao)
         {
+
             try
             {
-                ViewBag.Operacao = "I";
+                if (formacao == null)
+                    return RedirectToAction("CadFormacaoAcademica");
+                else
+                    return View("CadFormacaoAcademica", formacao);
 
-                FormacaoAcademicaDAO dao = new FormacaoAcademicaDAO();
-                FormacaoAcademicaViewModel dados = new FormacaoAcademicaViewModel();
-                return View("CadFormacaoAcademica", dados);
+
             }
             catch (Exception erro)
             {
@@ -60,6 +62,7 @@ namespace CadastroDeCurriculos.Controllers
 
         public IActionResult CadExperienciaProfissional()
         {
+
             try
             {
                 ViewBag.Operacao = "I";
@@ -74,20 +77,23 @@ namespace CadastroDeCurriculos.Controllers
             }
         }
 
-        public IActionResult CadCursos()
+        public IActionResult CadCursos(CursosViewModel curso)
         {
             try
             {
-                ViewBag.Operacao = "I";
+                if (curso == null)
+                    return View("CadCursos");
+                else
+                    return View("CadCursos", curso);
 
-                CursosDAO dao = new CursosDAO();
-                CursosViewModel dados = new CursosViewModel();
-                return View("CadCurso", dados);
             }
             catch (Exception erro)
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
+
+
+
         }
 
         public IActionResult Menu(string id)
@@ -131,13 +137,13 @@ namespace CadastroDeCurriculos.Controllers
                 ModelState.AddModelError("Nome", "Preencha o nome.");
             if (string.IsNullOrEmpty(dadosPessoais.Cpf))
                 ModelState.AddModelError("CPF", "Campo obrigatório.");
-            if (string.IsNullOrEmpty(dadosPessoais.Email)) 
+            if (string.IsNullOrEmpty(dadosPessoais.Email))
                 ModelState.AddModelError("Email", "Informe o e-email.");
             if (string.IsNullOrEmpty(dadosPessoais.CargoPretendido))
                 ModelState.AddModelError("CargoPretendido", "Informe um cargo pretendido!");
         }
 
-        public IActionResult SalvarDadosPessoais(DadosPessoaisViewModel dados, string Operacao, EnderecoViewModel dadoEnd)
+        public IActionResult SalvarDadosPessoais(DadosPessoaisViewModel dados, string Operacao, EnderecoViewModel dadoEnd, int IdDadosPessoais)
         {
             try
             {
@@ -148,15 +154,20 @@ namespace CadastroDeCurriculos.Controllers
                     EnderecoViewModel end = new EnderecoViewModel();
                     EnderecoDAO daoEnd = new EnderecoDAO();
                     if (Operacao == "I")
+                    {
+                        ViewBag.Operacao = "I";
                         dao.Inserir(dados);
+                    }
                     else
                     {
+                        ViewBag.Operacao = "A";
                         dao.Alterar(dados);
                         dadoEnd = daoEnd.Consulta(dados.Id_Endereco);
                     }
-                  //  end.idEndereco = (new EnderecoDAO().MesmoId());
+                    //  end.idEndereco = (new EnderecoDAO().MesmoId());
+                    ViewBag.IdDadosPessoais = IdDadosPessoais;
                     return View("NewEndereco", dadoEnd);
-                    }
+                }
                 else
                 {
                     ViewBag.Operacao = Operacao;
@@ -170,17 +181,25 @@ namespace CadastroDeCurriculos.Controllers
             }
         }
 
-        public IActionResult SalvarFormacaoAcademica(FormacaoAcademicaViewModel formacao, string Operacao)
+        public IActionResult SalvarFormacaoAcademica(FormacaoAcademicaViewModel formacao, string Operacao, int IdDadosPessoais)
         {
             try
             {
+                CursosDAO daoCurso = new CursosDAO();
+                CursosViewModel curso = daoCurso.Consulta(IdDadosPessoais);
                 FormacaoAcademicaDAO dao = new FormacaoAcademicaDAO();
-                // if (Operacao == "I")
-                dao.Inserir(formacao);
-                //  else
-                //  dao.Alterar(endereco);
-
-                return RedirectToAction("CadFormacaoAcademica");
+                if (Operacao == "I")
+                {
+                    ViewBag.Operacao = "I";
+                    dao.Inserir(formacao);
+                }
+                else
+                {
+                    ViewBag.Operacao = "A";
+                    dao.Alterar(formacao);
+                }
+                ViewBag.IdDadosPessoais = IdDadosPessoais;
+                return View("CadCursos",curso);
             }
             catch (Exception erro)
             {
@@ -189,17 +208,51 @@ namespace CadastroDeCurriculos.Controllers
         }
 
 
-        public IActionResult SalvarEndereco(EnderecoViewModel endereco, string Operacao)
+        public IActionResult SalvarEndereco(EnderecoViewModel endereco, string Operacao, int IdDadosPessoais)
         {
             try
             {
+                FormacaoAcademicaDAO daoFormacao = new FormacaoAcademicaDAO();
+                FormacaoAcademicaViewModel formacao = daoFormacao.Consulta(IdDadosPessoais);
                 EnderecoDAO dao = new EnderecoDAO();
-               // if (Operacao == "I")
+                if (Operacao == "I")
+                {
+                    ViewBag.Operacao = "I";
                     dao.Inserir(endereco);
-              //  else
-                  //  dao.Alterar(endereco);
+                }
+                else
+                {
+                    ViewBag.Operacao = "A";
+                    dao.Alterar(endereco);
+                }
+                ViewBag.IdDadosPessoais = IdDadosPessoais;
+                return View("CadFormacaoAcademica", formacao);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
 
-                return RedirectToAction("CadFormacaoAcademica");
+        public IActionResult SalvarCurso(CursosViewModel curso, string Operacao, int IdDadosPessoais)
+        {
+            try
+            {
+                ExperienciasProfissionaisDAO daoExperiencia = new ExperienciasProfissionaisDAO();
+                ExperienciasProfissionaisViewModel experiencia = daoExperiencia.Consulta(IdDadosPessoais);
+                CursosDAO dao = new CursosDAO();
+                if (Operacao == "I")
+                {
+                    ViewBag.Operacao = "I";
+                    dao.Inserir(curso);
+                }
+                else
+                {
+                    ViewBag.Operacao = "A";
+                    dao.Alterar(curso);
+                }
+                ViewBag.IdDadosPessoais = IdDadosPessoais;
+                return View("CadExperienciaProfissional", experiencia);
             }
             catch (Exception erro)
             {
@@ -212,7 +265,8 @@ namespace CadastroDeCurriculos.Controllers
             try
             {
                 ViewBag.Operacao = "A";
-               // PreparaListaCidadesParaCombo();
+                ViewBag.IdDadosPessoais = id;
+                // PreparaListaCidadesParaCombo();
 
                 DadosPessoaisDAO dao = new DadosPessoaisDAO();
                 DadosPessoaisViewModel dadosPessoais = dao.Consulta(id);
