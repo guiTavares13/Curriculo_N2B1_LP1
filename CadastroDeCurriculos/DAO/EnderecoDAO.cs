@@ -56,9 +56,9 @@ namespace CadastroDeCurriculos.DAO
             return e;
         }
 
-        public EnderecoViewModel Consulta(int codEndereco)
+        public EnderecoViewModel Consulta(int idEndereco)
         {
-            string sql = "select * from Endereco where cod_endereco = " + codEndereco;
+            string sql = "select * from Endereco where id_Endereco = " + idEndereco;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;

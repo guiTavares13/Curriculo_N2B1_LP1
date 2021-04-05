@@ -150,7 +150,10 @@ namespace CadastroDeCurriculos.Controllers
                     if (Operacao == "I")
                         dao.Inserir(dados);
                     else
+                    {
                         dao.Alterar(dados);
+                        dadoEnd = daoEnd.Consulta(dados.Id_Endereco);
+                    }
                   //  end.idEndereco = (new EnderecoDAO().MesmoId());
                     return View("NewEndereco", dadoEnd);
                     }

@@ -14,8 +14,8 @@ namespace CadastroDeCurriculos.DAO
         public void Inserir(DadosPessoaisViewModel dados)
         {
             string sql =
-            "insert into DadosPessoais(id_dadosPessoais, CPF,nome,telefone,email,cargo_pretendido)" +
-            "values(@id_dadosPessoais, @CPF, @nome, @telefone, @email, @cargo_pretendido)";
+            "insert into DadosPessoais(id_dadosPessoais, CPF,nome,telefone,email,cargo_pretendido,id_Endereco)" +
+            "values(@id_dadosPessoais, @CPF, @nome, @telefone, @email, @cargo_pretendido,@Id_Endereco)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(dados));
         }
         public void Alterar(DadosPessoaisViewModel dados)
@@ -25,6 +25,7 @@ namespace CadastroDeCurriculos.DAO
             "nome = @nome, " +
             "telefone = @telefone, " +
             "email = @email, " +
+            "id_endereco = @Id_endereco, " +
             "cargo_pretendido = @cargo_pretendido where id_dadosPessoais = @id_dadosPessoais";
             HelperDAO.ExecutaSQL(sql, CriaParametros(dados));
         }
@@ -47,13 +48,14 @@ namespace CadastroDeCurriculos.DAO
 
         private SqlParameter[] CriaParametros(DadosPessoaisViewModel dados)
         {
-            SqlParameter[] parametros = new SqlParameter[6];
+            SqlParameter[] parametros = new SqlParameter[7];
             parametros[0] = new SqlParameter("id_dadosPessoais", dados.Id);
             parametros[1] = new SqlParameter("CPF", dados.Cpf);
             parametros[2] = new SqlParameter("nome", dados.Nome);
             parametros[3] = new SqlParameter("telefone", dados.Telefone);
             parametros[4] = new SqlParameter("email", dados.Email);
             parametros[5] = new SqlParameter("cargo_pretendido", dados.CargoPretendido);
+            parametros[6] = new SqlParameter("id_Endereco", dados.Id_Endereco);
             return parametros;
         }
 
@@ -66,6 +68,7 @@ namespace CadastroDeCurriculos.DAO
             c.Telefone = registro["telefone"].ToString();
             c.Email = registro["email"].ToString();
             c.CargoPretendido = registro["cargo_pretendido"].ToString();
+            c.Id_Endereco = Convert.ToInt32(registro["id_Endereco"].ToString());
             return c;
         }
 

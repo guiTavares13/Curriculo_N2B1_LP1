@@ -13,5 +13,6 @@ namespace CadastroDeCurriculos.Models
         public string Telefone { get; set; }
         public string Email { get; set; }
         public string CargoPretendido { get; set; }
+        public int Id_Endereco { get; set; }
     }
 }
